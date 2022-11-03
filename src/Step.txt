@@ -2,3 +2,4 @@
 2.建置Header上的cartbutton，span的階層由上到下分別為"button圖示(svg檔案)"，"名稱"，"購物車內容數量"
 3.建立dummydata的meallist，並用map來導入其中，接著建構大意，最後用一個套件包起來，傳回app.js
 4.先建立Meal的Card，美觀顯示；接著建立MealsItem，透過不同的props讓步驟3的list map，以達到條列效果
+5.建立MealsForm，內容有一個form欄位(且具有input功能)跟一個+add按鈕，input利用UI來建立，可以直接繼承input的屬性內容
