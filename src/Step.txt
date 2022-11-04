@@ -3,3 +3,8 @@
 3.建立dummydata的meallist，並用map來導入其中，接著建構大意，最後用一個套件包起來，傳回app.js
 4.先建立Meal的Card，美觀顯示；接著建立MealsItem，透過不同的props讓步驟3的list map，以達到條列效果
 5.建立MealsForm，內容有一個form欄位(且具有input功能)跟一個+add按鈕，input利用UI來建立，可以直接繼承input的屬性內容
+6.初步建置購物車畫面，安排div跟cartItem常數
+7.建置購物車頁面，先在index底下建立overlay區塊，再用createPortal的方式將購物車頁面輸出到overlay，便能做出浮動在root page上方的效果。
+接著將購物車頁面包入Cart，形成真正的購物車元素。
+8.在APP.js內，建立useState來控制Cart的出現與否，包含header的開啟跟overlay的關閉。
+9.利用context跟provider，取代原先在app內的fragament，來賦予整個頁面存放/讀取購物車內容的功能。

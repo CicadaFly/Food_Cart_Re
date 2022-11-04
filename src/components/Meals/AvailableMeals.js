@@ -8,7 +8,7 @@ const DUMMY_MEALS = [
       description: 'Finest fish and veggies',
       price: 22.99,
     },
-    {
+    { 
       id: 'm2',
       name: 'Schnitzel',
       description: 'A german specialty!',
@@ -20,7 +20,7 @@ const DUMMY_MEALS = [
       description: 'American, raw, meaty',
       price: 12.99,
     },
-    {
+    { 
       id: 'm4',
       name: 'Green Bowl',
       description: 'Healthy...and green...',

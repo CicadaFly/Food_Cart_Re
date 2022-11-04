@@ -8,7 +8,7 @@ return(
 <Fragment>
   <header className={classes.header}>
   <h1>ReactMealsAPP</h1>
-  <HeaderCartButton />
+  <HeaderCartButton onClick = {props.openCart}/>
   </header>
   <div className={classes['main-image']}>
     <img src={mealsimage} alt="background"/>
