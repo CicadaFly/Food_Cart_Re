@@ -8,3 +8,6 @@
 接著將購物車頁面包入Cart，形成真正的購物車元素。
 8.在APP.js內，建立useState來控制Cart的出現與否，包含header的開啟跟overlay的關閉。
 9.利用context跟provider，取代原先在app內的fragament，來賦予整個頁面存放/讀取購物車內容的功能。
+10.調整Header內的數字顯示，連動provider提供的數字。
+11.進一步在provider內設定reducer，使用item作為add的key，id作為delete的key。***
+12.
