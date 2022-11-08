@@ -31,8 +31,23 @@ const cartReducer = (state, action) =>{
         };
     };
     if (action.type === "DELETE") {
-        
+        const existItemIndex = state.items.findIndex(
+            (item)=> item.id === action.id
+        );
+        const existItem = state.items[existItemIndex];
+        const updateAmount = state.totalAmount - existItem.price;
+        let updateItems;
+        if (existItem.amount === 1) {
+            updateItems = state.items.filter(item => item.id !== action.id);
+        } else {
+        const updatedItem = { ...existItem, amount: existItem.amount - 1 };
+        updateItems = [...state.items];
+        updateItems[existItemIndex] = updatedItem;
     }
+    return {
+        items: updateItems,
+        totalAmount: updateAmount
+    }}
 
     return defaultCartValue
 }
