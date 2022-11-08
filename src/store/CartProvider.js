@@ -30,6 +30,9 @@ const cartReducer = (state, action) =>{
             totalAmount: updateAmount
         };
     };
+    if (action.type === "DELETE") {
+        
+    }
 
     return defaultCartValue
 }
