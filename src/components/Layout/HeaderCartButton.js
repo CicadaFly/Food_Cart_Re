@@ -5,13 +5,31 @@ import CartContext from '../../store/Cart-Context';
 
 const HeaderCartButton = (props) => {
   const cartCtx = useContext(CartContext)
-  
-  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+  const {items} = cartCtx
+  const [buttonbump, setbuttonbump] = useState(false)
+  const btnClass = `${classes.button} ${buttonbump ? classes.bump : ''}`
+
+  useEffect(() => {
+    if (items.length === 0) {
+      return;
+    }
+    setbuttonbump(true);
+
+    const timer = setTimeout(() => {
+      setbuttonbump(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
+
+  const numberOfCartItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
 //reduce內的0，表示default value為0
   return (
-  <button className={classes.button} onClick = {props.onClick}>
+  <button className={btnClass} onClick = {props.onClick}>
     <span className={classes.icon}>
       <CartIcon/>
     </span>
