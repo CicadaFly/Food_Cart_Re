@@ -29,16 +29,29 @@ import { useEffect, useState } from 'react';
 //     },
 //   ];
 
+//下面的fetch原理，是利用useEffect先定義fetchMeals的整個流程，將api接收到的資料轉入setmeals內，所以執行fetchMeals時，自動會得到一個set後的meals陣列
+
 const AvailableMeals =()=>{
+  const [meals, setmeals] = useState([])
+  
   useEffect(()=> {
     const fetchMeals = async() => {
       const response = await fetch('https://react-test-74361-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json');
       const responseData = await response.json();
-    
-    }
+      const loadedMeals = []
+      for (const key in responseData) {
+        loadedMeals.push({
+          id:key,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          price: responseData[key].price
+        })
+      } setmeals(loadedMeals)
+     }; 
+     fetchMeals()
   }, [])   
-  fetch(input: "Meal_List" )
-    const MealsList = DUMMY_MEALS.map((meal) =>(
+
+    const MealsList = meals.map((meal) =>(
         <MealsItem
             id = {meal.id} 
             key = {meal.id}
