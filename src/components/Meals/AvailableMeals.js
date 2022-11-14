@@ -33,10 +33,17 @@ import { useEffect, useState } from 'react';
 
 const AvailableMeals =()=>{
   const [meals, setmeals] = useState([])
-  
+  const [isLoading, setIsLoading] = useState(true) //載入loading用
+  const [isError, setIsError] = useState() //確認是否有狀況
+
   useEffect(()=> {
     const fetchMeals = async() => {
       const response = await fetch('https://react-test-74361-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json');
+      
+      if (!response.ok) {
+        throw new Error("Something going wrong!!")
+      }
+
       const responseData = await response.json();
       const loadedMeals = []
       for (const key in responseData) {
@@ -47,9 +54,27 @@ const AvailableMeals =()=>{
           price: responseData[key].price
         })
       } setmeals(loadedMeals)
+        setIsLoading(false)
      }; 
-     fetchMeals()
-  }, [])   
+     fetchMeals().catch((error) =>{
+      setIsLoading(false);
+      setIsError(error.message);
+     });
+  }, [])
+
+    if (isLoading) {
+      return(
+        <section className= {classes.MealsLoading}>
+        <p> Loading ...</p>
+        </section>)
+    };
+
+    if (isError) {
+      return(
+        <section className= {classes.MealsError}>
+        <p>{isError}</p>
+        </section>)
+    };
 
     const MealsList = meals.map((meal) =>(
         <MealsItem
