@@ -28,3 +28,4 @@
 20.修改AvailableMeals內的資料來源，從原本的DummyData，改連結至FireBase內(用Fetch跟async進行呼叫，useEffect在頁面重新載入時進行首次存取)
 21.以useState新增兩項功能，Loading畫面及Error畫面，Error畫面用到catch(Error)功能，需多研究
 22.針對購物車內的按鈕，新增結帳功能以及欄位，同時建立按鈕間的出現規則
+23.
