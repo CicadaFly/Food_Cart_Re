@@ -47,7 +47,10 @@ const cartReducer = (state, action) =>{
     return {
         items: updateItems,
         totalAmount: updateAmount
-    }}
+    }};
+    if (action.type === "CLEAR"){
+        return defaultCartValue
+    }
 
     return defaultCartValue
 }
@@ -63,6 +66,10 @@ const CartProvider = (props) => {
     const deleteItemFromCartHandler = (id) =>{
         cartDispatchAction({type:"DELETE", id: id})
     }
+
+    const clearCartHandler = () =>{
+        cartDispatchAction({type: "CLEAR"})
+    }
     //return一組items跟totalAmount
 
     const cartInsideItem = {
@@ -70,6 +77,7 @@ const CartProvider = (props) => {
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         deleteItem: deleteItemFromCartHandler,
+        clearCart: clearCartHandler
     }   
 
 
