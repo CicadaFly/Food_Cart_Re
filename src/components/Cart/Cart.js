@@ -31,14 +31,14 @@ const Cart = (props) =>{
         </ul>
     );
 
-    const submitHandler = async (userdata) =>{
+    const submitHandler = async (userdata) => {
         setIsLoading(true);
-        await fetch ('https://react-test-74361-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json'), {
+        await fetch ('https://react-test-74361-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json', {
             method: 'POST',
             body: JSON.stringify({
-            user: userData,
+            user: userdata,
             orderedItems: cartCtx.items,})
-        };
+        });
         setIsLoading(false);
         setFinishedSubmit(true);
         cartCtx.clearCart();
@@ -57,12 +57,12 @@ const Cart = (props) =>{
             </div>
             {isOrdered && (
                 <CustomerCheck onConfirm={submitHandler} onCancel={props.onClose} />
-             )};
+             )}
             {!isOrdered && (
                 <div className={classes.actions}>
                 <button className={classes['button--alt']} onClick={props.onClose}>Close</button>
                 {hasItems && <button className={classes.button} onClick={orderHandler} >Order</button>}
-             </div>)};
+             </div>)}
 
         </Fragment>
     )
@@ -86,7 +86,7 @@ return(
     {isLoading && loadingContent}
     {!isLoading && finishedSubmit && finishSubmitContent}
 </Modal>
-);
+)
 };
 
 export default Cart

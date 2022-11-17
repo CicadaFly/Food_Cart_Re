@@ -1,5 +1,5 @@
 import classes from './CustomerCheck.module.css'
-import { useRef } from 'react';
+import { useRef,useState } from 'react';
 
 
 
@@ -10,18 +10,34 @@ const CustomerCheck = (props) =>{
     const postalInputRef = useRef();
     const cityInputRef = useRef();
 
+    const [formvalid, setformvalid] = useState({
+        name: true,
+        street: true,
+        city: true,
+        postal: true
+    })
+
     const confirmHandler= (event) => {
         event.preventDefault();
+        
+        const isEmpty = (value) => value.trim() === ''
 
         const enterName = nameInputRef.current.value;
         const enterStreet = streetInputRef.current.value;
         const enterPostal = postalInputRef.current.value;
         const enterCity = cityInputRef.current.value;
 
-        const checkNameIsValid = !enterName.trim() === '';
-        const checkStreetIsValid = !enterStreet.trim() === '';
-        const checkCityIsValid = !enterCity.trim() === '';
+        const checkNameIsValid = !isEmpty(enterName); 
+        const checkStreetIsValid = !(enterStreet.trim() === '');
+        const checkCityIsValid = ! (enterCity.trim() === '');
         const checkPostalIsValid = enterPostal.trim().length === 5;
+
+        setformvalid({
+            name: checkNameIsValid,
+            street: checkStreetIsValid,
+            city: checkCityIsValid,
+            postal: checkPostalIsValid
+        })
 
         const formIsOkay = checkNameIsValid & checkCityIsValid & checkPostalIsValid &checkStreetIsValid;
 
@@ -29,7 +45,7 @@ const CustomerCheck = (props) =>{
            { return};
         
         
-        props.onCofirm = ({
+        props.onConfirm ({
             name: enterName,
             street: enterStreet,
             city: enterCity,
@@ -39,16 +55,16 @@ const CustomerCheck = (props) =>{
 
 
         const nameControlClasses = `${classes.control} ${
-            checkNameIsValid? '' : classes.invalid
+            formvalid.name? '' : classes.invalid
         }`;
         const streetControlClasses = `${classes.control} ${
-            checkStreetIsValid? '' : classes.invalid
+            formvalid.street? '' : classes.invalid
           }`;
         const postalCodeControlClasses = `${classes.control} ${
-            checkPostalIsValid? '' : classes.invalid
+            formvalid.postal? '' : classes.invalid
           }`;
         const cityControlClasses = `${classes.control} ${
-            checkCityIsValid? '' : classes.invalid
+            formvalid.city? '' : classes.invalid
           }`;
 
     return (
